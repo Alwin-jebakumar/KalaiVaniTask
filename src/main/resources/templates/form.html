@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" th:href="@{../css/styles.css}">
+    <meta charset="UTF-8">
+    <meta name="user" content="user-information">
+    <style media="screen">
+        *,
+*:before,
+*:after{
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+body{
+ background-color: #080710;
+}
+.background{
+ width: 430px;
+ height: 520px;
+ position: absolute;
+ transform: translate(-50%,-50%);
+ left: 50%;
+ top: 50%;
+}
+.background .shape{
+ height: 200px;
+ width: 200px;
+ position: absolute;
+ border-radius: 50%;
+}
+.shape:first-child{
+ background: linear-gradient(
+     #1845ad,
+     #23a2f6
+ );
+ left: -80px;
+ top: -80px;
+}
+.shape:last-child{
+ background: linear-gradient(
+     to right,
+     #ff512f,
+     #f09819
+ );
+ right: -30px;
+ bottom: -80px;
+}
+form {
+    height: 660px;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+}
+form *{
+ font-family: 'Poppins',sans-serif;
+ color: #ffffff;
+ letter-spacing: 0.5px;
+ outline: none;
+ border: none;
+}
+form h3{
+ font-size: 32px;
+ font-weight: 500;
+ line-height: 42px;
+ text-align: center;
+}
+
+label{
+ display: block;
+ margin-top: 30px;
+ font-size: 16px;
+ font-weight: 500;
+}
+input{
+ display: block;
+ height: 50px;
+ width: 100%;
+ background-color: rgba(255,255,255,0.07);
+ border-radius: 3px;
+ padding: 0 10px;
+ margin-top: 8px;
+ font-size: 14px;
+ font-weight: 300;
+}
+::placeholder{
+ color: #e5e5e5;
+}
+ button{
+ margin-top: 30px;
+ width: 50%;
+ background-color: #ffffff;
+ color: #080710;
+ padding: 15px 0;
+ font-size: 18px;
+ font-weight: 600;
+ border-radius: 5px;
+ cursor: pointer;
+}
+.social{
+margin-top: 30px;
+display: flex;
+}
+.social div{
+background: red;
+width: 150px;
+border-radius: 3px;
+padding: 5px 10px 10px 5px;
+background-color: rgba(255,255,255,0.27);
+color: #eaf0fb;
+text-align: center;
+}
+.social div:hover{
+background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+margin-left: 25px;
+}
+.social i{
+margin-right: 4px;
+}
+
+form select {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 8px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #ffffff;
+    outline: none;
+    border: none;
+}
+form select option {
+    background-color: #080710;
+    color: #ffffff;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="container">
+    <div class="message" th:if="${message != null}">
+        [[${message}]]
+    </div>
+
+    <form
+            th:action="@{/form}"
+            method="post"
+            role="form"
+            th:object="${user}"
+    >
+        <h3>Register Here</h3>
+        <div class="form-group">
+            <label for="fullName">Fullname:</label>
+            <input th:field="*{fullName}" type="text" id="fullname" name="fullname" placeholder="Enter your fullname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input th:field="*{dob}" type="text" id="dob" name="dob" placeholder="Enter your date of birth" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input th:field="*{email}" type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phNo">Phone Number:</label>
+            <input th:field="*{phNo}" type="text" id="phno" name="phno" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="qualification">Qualification:</label>
+            <select th:field="*{qualification}" id="qualification" name="qualification" placeholder="Enter your qualification" required>
+                <option value="BE">BE</option>
+                <option value="B.Com">B.Com</option>
+                <option value="MBA">MBA</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <select th:field="*{department}" id="department" name="department" placeholder="Enter your department" required>
+                <option value="ECE">ECE</option>
+                <option value="CSE">CSE</option>
+                <option value="EEE">EEE</option>
+                <option value="MECH">MECH</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="yearPassout">Year of Passout:</label>
+            <input th:field="*{yearPassout}" id="yearPassout" name="yearPassout" placeholder="Enter your yearPassout" required>
+        </div>
+
+        <div class="form-group">
+            <label for="preferredRole">Preferred Role:</label>
+            <input th:field="*{preferredRole}" type="text" id="preferredRole" name="preferredRole" placeholder="Enter your preferred role" required>
+        </div>
+
+        <div class="form-group">
+            <label for="preferredSalary">Preferred Salary:</label>
+            <input th:field="*{preferredSalary}" type="text" id="preferredSalary" name="preferredSalary" placeholder="Enter your preferred salary" required>
+        </div>
+
+        <div class="form-group">
+            <label for="jobType">Job Type:</label>
+            <input th:field="*{jobType}" type="text" id="jobType" name="jobType" placeholder="Enter your job type" required>
+        </div>
+
+        <div class="form-group">
+            <label for="skills">Skills:</label>
+            <input th:field="*{skills}" type="text" id="skills" name="skills" placeholder="Enter your skills" required>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input th:field="*{location}" type="text" id="location" name="location" placeholder="Enter your location" required>
+        </div>
+
+        <button type="submit" value="Register">Submit</button>
+    </form>
+
+</div>
+</body>
+</html>
